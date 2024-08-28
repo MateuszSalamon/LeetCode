@@ -1,0 +1,55 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+struct hash_no
+{
+    int value;
+    int index;
+    UT_hash_handle hh;
+};
+
+void destroy_tab(struct hash_no** table) {
+  struct hash_no* curr;
+  struct hash_no* tmp;
+  
+  HASH_ITER(hh, *table, curr, tmp) {
+    HASH_DEL(*table, curr);
+    free(curr);
+  }
+}
+
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    *returnSize = 2;
+    int *retval = (int*) malloc(*returnSize * sizeof(int));
+    struct hash_no* tab = NULL;
+    struct hash_no* elem;
+    int remains;
+
+    for(int i = 0; i < numsSize; i++)
+    {
+        remains = target - nums[i];
+
+        HASH_FIND_INT(tab, &remains, elem);
+        if(elem)
+        {
+            retval[0] = elem->index;
+            retval[1] = i;
+            break;
+        }
+
+        HASH_FIND_INT(tab, &nums[i], elem);
+        if(!elem)
+        {
+            elem = (struct hash_no *) malloc(sizeof(*elem));
+            elem->value = nums[i];
+            elem->index = i;
+
+            HASH_ADD_INT(tab, value, elem);
+        }
+    }
+
+    destroy_tab(&tab);
+    
+
+    return retval;
+}
