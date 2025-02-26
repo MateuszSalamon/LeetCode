@@ -1,3 +1,4 @@
+/*my solution after compilation*/
 int maxAbsoluteSum(int* nums, int numsSize) {
 
     int big_sum = 0;
@@ -22,3 +23,21 @@ int maxAbsoluteSum(int* nums, int numsSize) {
     return big_sum - big_diff < 0 ? big_diff - big_sum : big_sum - big_diff;
     
 }
+
+
+/*looked up Ideal solution
+
+int maxAbsoluteSum(int* nums, int numsSize) {
+    int min = nums[0],
+        max = nums[0];
+    for(int i = 1;i<numsSize;i++){
+        nums[i] = nums[i] + nums[i-1];
+        if(nums[i] > max) max = nums[i];
+        if(nums[i] < min) min = nums[i];
+    }
+    if(max > max - min) return max;
+    if(-min > max - min) return -min;
+    return max - min;
+}
+
+*/
