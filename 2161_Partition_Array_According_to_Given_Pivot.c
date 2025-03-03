@@ -10,7 +10,7 @@ int* pivotArray(int* nums, int numsSize, int pivot, int* returnSize) {
 
     for(int lhs = 0; lhs < numsSize; lhs++)
     {
-        for(int rhs = numssize-1; rhs > 0; rhs--)
+        for(int rhs = numsSize-1; rhs > 0; rhs--)
         {
             if(nums[lhs] < pivot)
             {
