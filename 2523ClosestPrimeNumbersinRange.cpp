@@ -9,11 +9,11 @@ public:
         {
             if(SOEarr[i] == 1)
             {
-                primestore.push_back(num);
+                primestore.push_back(i);
             }
         }
 
-        if(primestore.size < 2)
+        if(primestore.size() < 2)
         {
             return vector<int>{-1, -1};
         }
@@ -35,18 +35,18 @@ public:
         return closePair;
     }
 private:
-    vectore<int> sieve(int upLim)
+    vector<int> sieve(int upLim)
     {
         vector<int> sievearr(upLim + 1, 1);
 
         sievearr[0] = 0;
         sievearr[1] = 0;
 
-        for(int n = 2; n*n < upLim; n++)
+        for(int n = 2; n*n <= upLim; n++)
         {
             if(sievearr[n]==1)
             {
-                for(int mult = n * n; mult < upLim; mult+=n)
+                for(int mult = n * n; mult <= upLim; mult+=n)
                 {
                     sievearr[mult] = 0;
                 }
