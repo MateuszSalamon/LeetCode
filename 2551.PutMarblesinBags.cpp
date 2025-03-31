@@ -2,8 +2,8 @@ class Solution {
 public:
     long long putMarbles(vector<int>& weights, int k) {
 
-        int size = weight.size();
-        vector<int> pairs(weight.size()-1);
+        int size = weights.size();
+        vector<int> pairs(weights.size()-1);
         for(int i = 0; i < weights.size()-1; i++)
         {
             pairs[i] += weights.at(i)+weights.at(i+1);
@@ -14,7 +14,7 @@ public:
         long long retval= 0;
         for(int i = 0; i<k-1; i++)
         {
-            retval += paris.at(weight.size()-1-i) - pairs.at(i);
+            retval += pairs.at(weights.size()-2-i) - pairs.at(i);
         }
 
         return retval;
